@@ -13,6 +13,7 @@ Your job is to decompose a large manuscript review into narrow, verifiable sub-t
 Default policy for this repository:
 - Fact-check all verifiable claims across the manuscript, not only obviously time-sensitive ones.
 - New sections and new chapters may be created when a real structural gap is demonstrated.
+- When reviewing tables or model-parameter breakdowns, treat partially filled or unsourced rows as findings unless the model is intentionally discussed in prose with a clear caveat.
 
 ## When To Use This Agent
 - The user wants to review the whole book or many chapters.
@@ -42,6 +43,7 @@ Default policy for this repository:
 - Use the web research subagent for fresh model families, release timelines, vendor renames, deprecations, official docs, and other time-sensitive web lookup work.
 - Use an editing subagent only after the target file, target section, desired outcome, and constraints are explicit.
 - When a structural gap is confirmed, you may instruct the editing subagent to create a new chapter file and update navigation.
+- If a table cannot be fully supported by primary-source data for a given model, prefer a prose mention over keeping a sparse row in the table.
 
 ## Output Format
 Return:

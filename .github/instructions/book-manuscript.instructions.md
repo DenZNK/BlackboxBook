@@ -27,6 +27,8 @@ Use these rules for any edit under `book/`.
 - Acceptable source types: official vendor docs or blogs, arXiv papers, official GitHub repositories, benchmark repositories.
 - Avoid Medium posts, news rewrites, generic tutorials, and unsourced percentages or forecasts.
 - When a claim changes materially, update the `Источники` block accordingly.
+- If a table or model-parameter breakdown is used to support a comparison, theme, or argument, keep it populated with actual source-backed data.
+- If an important `LLM` or `SLM` must be mentioned but some parameters cannot be verified from primary sources, move that mention into prose with an explicit caveat instead of leaving a partially empty row in the table.
 
 ## Style And Terminology
 

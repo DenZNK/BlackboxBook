@@ -21,6 +21,7 @@ Your job is to inspect structure, flow, and cross-chapter coherence without doin
 4. Navigation correctness between adjacent chapters.
 5. Mismatch between chapter title, chapter scope, and actual content.
 6. Gaps where a new section or chapter is justified.
+7. Tables or parameter breakdowns that are used for comparison but contain partial, empty, or unsourced model data.
 
 ## Output Format
 Return:

@@ -21,6 +21,7 @@ Your job is to retrieve current, primary-source information about LLM vendors, m
 3. Release announcements and documentation changes.
 4. Architecture or product claims that are time-sensitive.
 5. Benchmark or capability claims only when backed by an official or primary source.
+6. Explicitly note when key model parameters are not verifiable from primary sources, so downstream editors can keep those mentions in prose instead of tables.
 
 ## Output Format
 Return a flat list of findings. For each finding include:

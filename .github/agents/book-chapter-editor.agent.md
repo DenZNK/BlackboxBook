@@ -21,6 +21,7 @@ Your job is to apply only the requested edits to the specified chapter files whi
 3. Update sources when claims change.
 4. If structure changes, keep navigation correct.
 5. Prefer the smallest edit that resolves the finding unless the parent agent requested a rewrite.
+6. If a table or model-parameter breakdown is part of the requested edit, keep only source-backed data in it; move important but incompletely sourced model mentions into prose with a clear caveat.
 
 ## Output Format
 Return:
