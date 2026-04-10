@@ -22,6 +22,10 @@ Your job is to apply only the requested edits to the specified chapter files whi
 4. If structure changes, keep navigation correct.
 5. Prefer the smallest edit that resolves the finding unless the parent agent requested a rewrite.
 6. If a table or model-parameter breakdown is part of the requested edit, keep only source-backed data in it; move important but incompletely sourced model mentions into prose with a clear caveat.
+7. Do not include code blocks in chapters. Replace code examples with AI prompts that let the reader generate up-to-date code. Flows, processes, diagrams, and pseudocode (when it explains an algorithm better than prose) are acceptable.
+8. Do not use complex mathematical formulas. Describe general approaches and intuition in words. Simple formulas (softmax, Q·Kᵀ, basic normalization) are acceptable where they genuinely aid understanding.
+9. Where applicable to the chapter topic, add practical assignments to the `Практический вывод` section or a `### Задания` subsection. Each assignment must have a clear formulation, application context, and expected outcome.
+10. After any structural change, verify that AGENTS.md and readme.md remain accurate.
 
 ## Output Format
 Return:

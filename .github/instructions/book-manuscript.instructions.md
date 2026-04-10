@@ -5,7 +5,7 @@ applyTo: "book/**/*.md"
 ---
 # BlackboxBook Chapter Rules
 
-Use these rules for any edit under `book/`.
+Use these rules for any edit under `book/`. AGENTS.md is the canonical source of truth for the full book context, chapter map, and style guide. These rules are the actionable editing checklist.
 
 ## Chapter Structure
 
@@ -37,9 +37,28 @@ Use these rules for any edit under `book/`.
 - Do not flatten useful analogies into dry textbook prose.
 - Keep terminology stable: `LLM`, `attention`, `self-attention`, `MLP`, `MoE`, `SSM`, `Mamba`, `RAG`, `RLHF`, `DPO`, `RoPE`, `BPE`, `KV-кэш`, `context window`, `structured outputs`, `tool use`, `agent loop`, `chain-of-thought`, `test-time compute`, `cross-entropy loss`, `Flash Attention`, `CoVe`, `MCP`, `LDD`.
 
+## Content Rules
+
+### Formulas
+- Do not use complex mathematical formulas. Describe general approaches, intuition, and mechanism in words.
+- Simple formulas are acceptable where they genuinely aid understanding (e.g., $\text{softmax}$, $Q \cdot K^T$, basic normalization).
+- Criterion: an engineer reader should understand the formula without a separate linear algebra course.
+
+### Code
+- Do not include code blocks in chapters. Code becomes outdated faster than ideas.
+- Instead of a code example, write an **AI prompt** that lets the reader generate up-to-date code themselves. The prompt should describe: the desired output, the stack/API to use, and the constraints.
+- Flows, processes, approaches, and diagrams (textual or visual) are useful and encouraged.
+- Pseudocode is acceptable in rare cases when it explains an algorithm or pattern better than prose.
+
+### Practical Assignments
+- Where applicable to the chapter topic, add **practical assignments** to the `Практический вывод` section or a dedicated `### Задания` subsection.
+- Each assignment must include: a clear formulation, application context (where and when it is useful), and the expected outcome.
+- Assignments must be relevant to real engineering practice, not academic exercises.
+
 ## Editing Discipline
 
 - Prefer minimal, targeted edits over broad rewrites unless structure is the actual issue.
 - Do not remove expressive examples or analogies that still explain the mechanism correctly.
 - Do not introduce claims that cannot be verified.
 - If a structural gap is real, it is acceptable to add a new section or chapter, but keep the chapter map coherent.
+- After any structural change, verify that AGENTS.md and readme.md remain accurate.

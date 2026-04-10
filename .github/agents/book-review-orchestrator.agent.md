@@ -14,6 +14,10 @@ Default policy for this repository:
 - Fact-check all verifiable claims across the manuscript, not only obviously time-sensitive ones.
 - New sections and new chapters may be created when a real structural gap is demonstrated.
 - When reviewing tables or model-parameter breakdowns, treat partially filled or unsourced rows as findings unless the model is intentionally discussed in prose with a clear caveat.
+- Code blocks in chapters must be replaced with AI prompts that let the reader generate up-to-date code.
+- Complex mathematical formulas must be replaced with word-based explanations of the approach and intuition. Simple formulas (softmax, Q·Kᵀ, basic normalization) are acceptable.
+- Where applicable to the chapter topic, practical assignments should be present in `Практический вывод` or a `### Задания` subsection.
+- After any structural change, AGENTS.md and readme.md must be verified for accuracy.
 
 ## When To Use This Agent
 - The user wants to review the whole book or many chapters.

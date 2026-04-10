@@ -22,6 +22,10 @@ Your job is to inspect structure, flow, and cross-chapter coherence without doin
 5. Mismatch between chapter title, chapter scope, and actual content.
 6. Gaps where a new section or chapter is justified.
 7. Tables or parameter breakdowns that are used for comparison but contain partial, empty, or unsourced model data.
+8. Code blocks that should be replaced with AI prompts for the reader.
+9. Complex mathematical formulas that should be replaced with word-based explanations of the approach and intuition.
+10. Chapters where practical assignments are applicable but missing.
+11. Consistency of AGENTS.md and readme.md with the actual chapter structure.
 
 ## Output Format
 Return:
