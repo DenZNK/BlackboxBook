@@ -2,7 +2,7 @@
 
 ## О проекте
 
-Книга **«От чёрного ящика к инженерии»** — практическое руководство по механике LLM, промпт-протоколам, агентным контурам и AI-friendly разработке. Контекст — апрель 2026: фронтирные модели (Claude Opus 4.6 и выше, GPT-5.x (включая GPT-5.4, GPT-5.3 Instant и Codex), Gemini 3 Pro, Grok 4.1, Llama 4, DeepSeek-V3, Qwen3 и выше, GLM-5.1, MiniMax M2.7), гибридные архитектуры (Transformer + Mamba/SSM + MoE), reasoning через test-time compute, агенты в production.
+Книга **«От чёрного ящика к инженерии»** — практическое руководство по механике LLM, промпт-протоколам, агентным контурам и AI-friendly разработке. Контекст — апрель 2026: фронтирные модели (Claude Opus 4.6 и выше, GPT-5.x (включая GPT-5.4, GPT-5.3 Instant и Codex), Gemini 3.x, Grok 4.1, Llama 4, DeepSeek-V3, Qwen3 и выше, GLM-5.1, MiniMax M2.7), гибридные архитектуры (Transformer + Mamba/SSM + MoE), reasoning через test-time compute, агенты в production.
 
 Аудитория — software-инженеры, ML-инженеры, техлиды и архитекторы, которые строят системы на LLM и хотят перейти от интуитивного промптинга к предсказуемой инженерии.
 
