@@ -32,14 +32,15 @@ If the parent agent provides only raw findings files, do not ingest unrelated ra
 1. Preserve the existing engineering tone and the analogy -> mechanism -> implication pattern.
 2. Keep terminology consistent with the repository conventions.
 3. Update sources when claims change.
-4. If structure changes, keep navigation correct.
-5. Prefer the smallest edit that resolves the finding unless the parent agent requested a rewrite.
-6. If a table or model-parameter breakdown is part of the requested edit, keep only source-backed data in it; move important but incompletely sourced model mentions into prose with a clear caveat.
-7. Do not include code blocks in chapters. Replace code examples with AI prompts that let the reader generate up-to-date code. Flows, processes, diagrams, and pseudocode (when it explains an algorithm better than prose) are acceptable.
-8. Do not use complex mathematical formulas. Describe general approaches and intuition in words. Simple formulas (softmax, Q·Kᵀ, basic normalization) are acceptable where they genuinely aid understanding.
-9. Where applicable to the chapter topic, add practical assignments to the `Практический вывод` section or a `### Задания` subsection. Each assignment must have a clear formulation, application context, and expected outcome.
-10. After any structural change, verify that AGENTS.md and readme.md remain accurate.
-11. Before returning, run `python3 scripts/validate_book_format.py <changed_chapter_files>` and fix every reported error in the files you edited. If only warnings remain, mention them explicitly in your completion note.
+4. If the chapter brief shows that a recommendation or pattern is outdated or superseded and includes a verified better alternative, rewrite the relevant prose and `Практический вывод` to the newer approach instead of leaving only a caveat.
+5. If structure changes, keep navigation correct.
+6. Prefer the smallest edit that resolves the finding unless the parent agent requested a rewrite.
+7. If a table or model-parameter breakdown is part of the requested edit, keep only source-backed data in it; move important but incompletely sourced model mentions into prose with a clear caveat.
+8. Do not include code blocks in chapters. Replace code examples with AI prompts that let the reader generate up-to-date code. Flows, processes, diagrams, and pseudocode (when it explains an algorithm better than prose) are acceptable.
+9. Do not use complex mathematical formulas. Describe general approaches and intuition in words. Simple formulas (softmax, Q·Kᵀ, basic normalization) are acceptable where they genuinely aid understanding.
+10. Where applicable to the chapter topic, add practical assignments to the `Практический вывод` section or a `### Задания` subsection. Each assignment must have a clear formulation, application context, and expected outcome.
+11. After any structural change, verify that AGENTS.md and readme.md remain accurate.
+12. Before returning, run `python3 scripts/validate_book_format.py <changed_chapter_files>` and fix every reported error in the files you edited. If only warnings remain, mention them explicitly in your completion note.
 
 ## Output Format
 Return:

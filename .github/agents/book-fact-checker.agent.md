@@ -32,8 +32,9 @@ Your job is to validate claims against primary sources and return a concise audi
 3. Verify against primary sources such as official docs, official blogs, arXiv papers, benchmark repos, or vendor pages.
 4. Mark each claim as confirmed, stale, unsupported, or incorrect.
 5. Propose a minimal correction in Russian that preserves the book's style.
-6. If a table or parameter breakdown includes models with missing or unverifiable fields, recommend either filling the data from primary sources or moving that model mention into prose with an explicit caveat.
-7. Flag code blocks that should be replaced with AI prompts, and complex math formulas that should be replaced with word-based explanations.
+6. When a recommendation is directionally reasonable but outdated or superseded, treat it as `stale` and propose the better source-backed replacement rather than a warning-only note.
+7. If a table or parameter breakdown includes models with missing or unverifiable fields, recommend either filling the data from primary sources or moving that model mention into prose with an explicit caveat.
+8. Flag code blocks that should be replaced with AI prompts, and complex math formulas that should be replaced with word-based explanations.
 
 ## Output Format
 Return a flat list of findings. For each finding include:

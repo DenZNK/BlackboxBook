@@ -29,6 +29,7 @@ Use these rules for any edit under `book/`. AGENTS.md is the canonical source of
 - When a claim changes materially, update the `Источники` block accordingly.
 - If a table or model-parameter breakdown is used to support a comparison, theme, or argument, keep it populated with actual source-backed data.
 - If an important `LLM` or `SLM` must be mentioned but some parameters cannot be verified from primary sources, move that mention into prose with an explicit caveat instead of leaving a partially empty row in the table.
+- If fact-checking or research shows that a recommendation, workflow, or engineering pattern in the manuscript is outdated, superseded, or materially less correct than current source-backed practice, update the manuscript text itself. Do not merely label it stale; replace it with the better approach and refresh the `Источники` block.
 
 ## Style And Terminology
 
@@ -69,6 +70,7 @@ Use these rules for any edit under `book/`. AGENTS.md is the canonical source of
 - Prefer minimal, targeted edits over broad rewrites unless structure is the actual issue.
 - Do not remove expressive examples or analogies that still explain the mechanism correctly.
 - Do not introduce claims that cannot be verified.
+- When one outdated recommendation is fixed in one chapter, check whether the same guidance appears in adjacent or related chapters and synchronize those mentions when they are in scope.
 - If a structural gap is real, it is acceptable to add a new section or chapter, but keep the chapter map coherent.
 - After any structural change, verify that AGENTS.md and readme.md remain accurate.
 - After editing manuscript files, run `python3 scripts/validate_book_format.py <changed_files>` and fix all reported errors before finishing.

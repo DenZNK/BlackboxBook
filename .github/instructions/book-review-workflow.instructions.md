@@ -31,6 +31,12 @@ Use these rules when editing review agents, prompts, or persistent review-cache 
 - Direct orchestrator requests such as adding a topic, fixing one chapter, or follow-up corrections must use the same cache-first protocol. Do not force a full-book plan when the request is scoped.
 - Scoped follow-up requests should read only the impacted topic files and the minimal adjacent chapter or navigation context needed for quality.
 
+## Converting Findings Into Book Updates
+
+- When research or fact-checking shows that the manuscript teaches an outdated, superseded, or materially weaker approach and a better source-backed approach is available, the workflow must produce a concrete manuscript delta for the affected chapter(s), not just a cache refresh or finding note.
+- Findings, chapter briefs, and edit handoffs should carry enough detail to update the relevant prose, `Практический вывод`, and `Источники` blocks.
+- Keep this behavior explicit in `.github/agents/` and `.github/prompts/` so direct agent invocations inherit the same update policy.
+
 ## Editing Discipline
 
 - Keep the repo-cache schema simple and stable. Prefer additive updates to rewriting large files.

@@ -37,6 +37,7 @@ Your job is to inspect structure, flow, and cross-chapter coherence without doin
 9. Complex mathematical formulas that should be replaced with word-based explanations of the approach and intuition.
 10. Chapters where practical assignments are applicable but missing.
 11. Consistency of AGENTS.md and readme.md with the actual chapter structure.
+12. Cross-chapter drift where one chapter was updated to a newer recommendation but related chapters still teach the superseded approach.
 
 ## Output Format
 Return:

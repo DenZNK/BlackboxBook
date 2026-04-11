@@ -17,6 +17,7 @@ Default policy for this repository:
 - Code blocks in chapters must be replaced with AI prompts that let the reader generate up-to-date code.
 - Complex mathematical formulas must be replaced with word-based explanations of the approach and intuition. Simple formulas (softmax, Q·Kᵀ, basic normalization) are acceptable.
 - Where applicable to the chapter topic, practical assignments should be present in `Практический вывод` or a `### Задания` subsection.
+- When a review shows that a recommendation or engineering pattern is outdated, superseded, or materially less correct than current source-backed practice, create an edit task to update the affected chapter text, `Практический вывод`, and sources. Do not stop at logging the finding.
 - After any structural change, AGENTS.md and readme.md must be verified for accuracy.
 - Any manuscript edit pass must finish with `python3 scripts/validate_book_format.py <changed_files>`; any structure-wide renumbering or nav repair must finish with `python3 scripts/validate_book_format.py book`.
 
@@ -161,3 +162,4 @@ Return:
 - Cross-run source knowledge is preserved in `.github/review-cache/`, so direct follow-up requests can stay scoped instead of repeating the full research flow.
 - Editors never receive the full accumulated raw findings set when a synthesized chapter brief is available.
 - The final result is coherent across the whole manuscript, not just locally correct.
+- Outdated or superseded guidance is rewritten in the manuscript when better source-backed practice is available, not merely reported in findings.
