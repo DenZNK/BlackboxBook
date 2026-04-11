@@ -10,7 +10,7 @@
 
 | Путь | Назначение |
 |------|-----------|
-| `book/` | Основной редактируемый корпус. 24 главы: `00_введение.md` … `23_резюме_и_источники.md` |
+| `book/` | Основной редактируемый корпус. 26 глав: `00_введение.md` … `25_резюме_и_источники.md` |
 | `scripts/build_book_pdf.py` | Скрипт сборки PDF из `book/` |
 | `build_pdf.command` | Обёртка для локального запуска сборки (macOS) |
 | `build_pdf_ebook.command` | Обёртка для ebook/Kindle-сборки (macOS) |
@@ -28,9 +28,10 @@
 | 14–15 | Качество и безопасность | Evals (golden sets, LLM-as-Judge, regression gates, failure taxonomy), безопасность (prompt injection, jailbreaks, red-teaming, guardrails, tenant isolation) |
 | 16–17 | Код и наблюдаемость | AI-friendly код, LDD, observability (OpenTelemetry, SLO, incident response) |
 | 18–20 | Продвинутые темы | Мультимодальные системы, дообучение и post-training, паттерны проектирования |
-| 21 | Внедрение | Минимальный контур, метрики, постепенная интеграция |
-| 22 | Ландшафт | Гибриды (Mamba + Transformer + MoE), reasoning-модели, SLM и edge-first, длинный контекст и мультимодальность, Diffusion LLM, open-weight frontier, MCP-экосистема, экономика inference |
-| 23 | Резюме | Принципы LLM-инженерии, общий список источников |
+| 21–22 | Serving и runtime | Inference pipeline, KV-кэш, PagedAttention, batching, quantization, durable orchestration, жизненный цикл агента |
+| 23 | Внедрение | Минимальный контур, метрики, постепенная интеграция |
+| 24 | Ландшафт | Гибриды (Mamba + Transformer + MoE), reasoning-модели, SLM и edge-first, длинный контекст и мультимодальность, Diffusion LLM, open-weight frontier, MCP-экосистема, экономика inference |
+| 25 | Резюме | Принципы LLM-инженерии, общий список источников |
 
 ---
 

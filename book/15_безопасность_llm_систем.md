@@ -432,6 +432,52 @@ User Input
 
 ---
 
+## 15.11. Governance и compliance by design
+
+Безопасность LLM-системы не заканчивается на защите от injection и jailbreak. В enterprise-среде и regulated environments архитектурные ограничения шире: где хранятся данные, кто имеет доступ к каким промптам, что можно аудировать, какие функции несовместимы с zero data retention. Эти вопросы — не юридическая сноска, а архитектурное решение, которое принимается на этапе проектирования.
+
+### Data residency и retention modes
+
+LLM-провайдеры предлагают разные режимы хранения данных:
+
+- **Standard retention** — данные используются для улучшения моделей (default в consumer-продуктах).
+- **Zero Data Retention (ZDR)** — промпты и ответы не сохраняются провайдером после обработки.
+- **Enterprise agreements** — отдельные контрактные условия с SLA на data handling.
+
+Архитектурное следствие: некоторые функции несовместимы с ZDR. При ZDR часто недоступны: conversation history на стороне провайдера, асинхронные batch-запросы (требуют хранения задач), fine-tuning на клиентских данных. Data residency добавляет ещё одно измерение: для EU-организаций важно, чтобы данные обрабатывались в определённом регионе. Не все модели и не все endpoint'ы доступны во всех регионах — это влияет на выбор модели и архитектуру routing'а.
+
+### Auditability: аудит промптов, инструментов и изменений
+
+В regulated environment каждое изменение системного промпта, набора инструментов или routing-логики должно быть аудируемым.
+
+- **Prompt-as-code с version control** (см. [Главу 17, секция 17.3](17_наблюдаемость_и_эксплуатация.md)). Каждый деплой промпта — это commit с автором, датой и описанием.
+- **Tool registry**: список доступных инструментов не должен меняться неконтролируемо. MCP-серверы, подключённые к системе, — это attack surface и compliance surface одновременно.
+- **Separation of duties**: тот, кто пишет промпт, не должен быть тем же, кто одобряет его деплой в production. Аналогия с code review для обычного кода.
+
+### Third-party MCP и compliance boundaries
+
+MCP-серверы, предоставляемые третьими сторонами, создают compliance risk: данные могут передаваться внешним системам.
+
+- Каждый подключённый MCP-сервер проходит compliance review так же, как сторонний API.
+- Sensitive данные не должны передаваться в MCP-серверы без DLP-проверки.
+- Практика: whitelist разрешённых MCP-серверов вместо open marketplace.
+
+### Key management для LLM-инфраструктуры
+
+API-ключи к LLM-провайдерам, MCP-серверам и vector DB — это secrets, которые управляются через стандартные практики (см. §15.10). Дополнительное требование — ротация ключей. При утечке ключа к LLM-API злоумышленник получает доступ не к данным, а к генерации: может генерировать от имени организации, потратить бюджет, эксфильтрировать контекст через crafted промпты.
+
+Для enterprise: API-ключи привязаны к организациям с policies (rate limits, model access, content filtering). Организационная структура API-доступа — часть governance.
+
+### Связь с AI Act и regulatory frameworks
+
+EU AI Act (вступил в силу поэтапно с 2024–2025) классифицирует AI-системы по уровню риска: unacceptable, high-risk, limited, minimal. Для high-risk AI-систем требуется: risk management, data governance, human oversight, transparency, accuracy/robustness monitoring.
+
+Практическое следствие для LLM-инженера: если система принимает решения, влияющие на людей (HR-скрининг, кредитный скоринг, медицинская диагностика), нужны формальные evals, audit trail, human-in-the-loop и документация. За пределами EU AI Act: NIST AI RMF, ISO 42001 — добровольные фреймворки, но enterprise-клиенты всё чаще требуют соответствие.
+
+Governance — это не overhead, а архитектурное ограничение уровня data residency и access control. Встраивать его post-hoc дороже, чем закладывать при проектировании. Для enterprise LLM-систем compliance review — такая же часть launch checklist, как load testing и security audit.
+
+---
+
 ## Практический вывод
 
 ### Security checklist для production LLM-системы
@@ -450,6 +496,7 @@ User Input
 | 8 | **Supply chain**: lock files, checksum verification, не auto-install LLM-suggested пакетами | Процесс |
 | 9 | **Secrets**: никогда в промптах, vault access, output scanning, credential rotation | Гигиена |
 | 10 | **Мониторинг**: алерты на injection attempts, unusual tool usage, prompt extraction patterns | Детекция |
+| 11 | **Governance**: data residency, retention mode, audit trail, MCP compliance review | Процесс |
 
 Безопасность LLM-системы — не чеклист, который заполняется один раз. Это непрерывный процесс: новые атаки появляются быстрее, чем обновляются защиты. Red-teaming должен стать частью CI/CD, guardrails — частью архитектуры, а security review — частью каждого изменения промпта или tool-конфигурации.
 
@@ -460,6 +507,8 @@ User Input
 2. **Проверьте indirect injection через RAG.** Добавьте в тестовый корпус документ с встроенной инструкцией (например, в HTML-комментарии). Проверьте, выполнит ли модель инструкцию из документа. **Ожидаемый результат:** понимание, насколько ваш RAG-пайплайн уязвим к indirect injection; настройка output sanitization.
 
 3. **Аудит secrets.** Проверьте: (a) попадают ли секреты в системный промпт? (b) можно ли извлечь системный промпт через jailbreak? (c) появляются ли internal identifiers в user-facing output? **Ожидаемый результат:** план ротации credentials и перенос секретов в tool implementation.
+
+4. **Compliance-аудит LLM-системы.** Определите: (1) какой retention mode используется у вашего LLM-провайдера, (2) какие MCP-серверы подключены и проходили ли они compliance review, (3) есть ли audit trail для изменений промптов и tool-конфигураций, (4) соответствует ли система требованиям data residency для вашего региона. **Ожидаемый результат:** checklist соответствия с выявленными gaps и план устранения.
 
 ---
 
