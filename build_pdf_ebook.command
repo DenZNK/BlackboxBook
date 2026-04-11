@@ -19,9 +19,10 @@ fi
 python3 "$SCRIPT_DIR/scripts/build_book_pdf.py" \
   --source "$SCRIPT_DIR/book" \
   --output "$PDF_PATH" \
+  --layout-profile ebook \
   --page-width 6in \
   --page-height 8in \
-  --margin 0.45in \
+  --margin 0.35in \
   --wrap-code-blocks \
   --code-font-size footnotesize
 STATUS=$?

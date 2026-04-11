@@ -19,9 +19,10 @@ fi
 python3 "$SCRIPT_DIR/scripts/build_book_pdf.py" \
   --source "$SCRIPT_DIR/book" \
   --output "$PDF_PATH" \
+  --layout-profile phone \
   --page-width 4.1in \
   --page-height 9.1in \
-  --margin 0.28in \
+  --margin 0.22in \
   --wrap-code-blocks \
   --code-font-size footnotesize
 STATUS=$?
