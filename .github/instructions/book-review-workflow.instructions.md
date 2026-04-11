@@ -28,7 +28,7 @@ Use these rules when editing review agents, prompts, or persistent review-cache 
 
 - Use freshness classes to control rechecks: `static`, `slow`, `fast`, `volatile`.
 - Re-check old sources only when the freshness window has expired, a watch source indicates change, the user explicitly asks for the latest state, or the manuscript scope changed enough that the old cache no longer covers the claim.
-- Direct orchestrator requests such as adding a topic, fixing one chapter, or follow-up corrections must use the same cache-first protocol. Do not force a full-book plan when the request is scoped.
+- Direct orchestrator requests such as improving one chapter, adding a topic, drafting a new chapter/article, or follow-up corrections must use the same cache-first protocol when factual research is needed. Do not force a full-book plan when the request is scoped.
 - Scoped follow-up requests should read only the impacted topic files and the minimal adjacent chapter or navigation context needed for quality.
 
 ## Converting Findings Into Book Updates

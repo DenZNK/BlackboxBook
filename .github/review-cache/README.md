@@ -1,8 +1,8 @@
 # Persistent Review Cache
 
-This directory is the cross-run cache for BlackboxBook review workflows.
+This directory is the cross-run cache for BlackboxBook review and source-backed manuscript workflows.
 
-Use it to avoid repeating the same web fetches on every review run. Session memory still holds run-local raw findings and chapter briefs, but durable research state lives here.
+Use it to avoid repeating the same web fetches on every review run or source-backed writing pass. Session memory still holds run-local raw findings and chapter briefs, but durable research state lives here.
 
 ## Files
 
@@ -12,7 +12,7 @@ Use it to avoid repeating the same web fetches on every review run. Session memo
 
 ## Request Handling Algorithm
 
-1. Classify the request as one of: `full-book-review`, `scoped-review`, `topic-addition`, `follow-up-fix`, `structural-request`.
+1. Classify the request as one of: `full-book-review`, `scoped-review`, `improvement-pass`, `topic-addition`, `new-chapter-authoring`, `follow-up-fix`, `structural-request`.
 2. Map the request to the smallest relevant set of chapter files and `Topic ID`s.
 3. Read only the relevant topic files plus matching rows in `source-registry.md` and `scope-log.md`.
 4. Choose one cache action per topic:
@@ -48,6 +48,8 @@ The same cache-first flow applies when the user does not run the full-book promp
 Examples:
 
 - "Add a section about frontier open-weight models" -> classify as `topic-addition`, inspect only the relevant topic files, refresh missing or stale sources, then edit the target chapter.
+- "Improve chapter 12 and expand the practical takeaway" -> classify as `improvement-pass`, inspect only the relevant topic files if the rewrite depends on factual claims, then edit the target chapter.
+- "Write a new chapter about agent evaluation in production" -> classify as `new-chapter-authoring`, inspect only the relevant topic files and sources needed for the new material, then draft the new chapter and wire navigation.
 - "Fix chapter 22 after the last review" -> classify as `follow-up-fix`, inspect the chapter's prior scope-log rows and topic files, and avoid a full-book pass.
 - "Re-check only Anthropic naming" -> classify as `scoped-review`, refresh only the Anthropic topic file unless adjacent chapters need confirmation.
 
