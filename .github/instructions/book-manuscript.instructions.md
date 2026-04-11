@@ -37,6 +37,15 @@ Use these rules for any edit under `book/`. AGENTS.md is the canonical source of
 - Do not flatten useful analogies into dry textbook prose.
 - Keep terminology stable: `LLM`, `attention`, `self-attention`, `MLP`, `MoE`, `SSM`, `Mamba`, `RAG`, `RLHF`, `DPO`, `RoPE`, `BPE`, `KV-кэш`, `context window`, `structured outputs`, `tool use`, `agent loop`, `chain-of-thought`, `test-time compute`, `cross-entropy loss`, `Flash Attention`, `CoVe`, `MCP`, `LDD`.
 
+## Markdown Formatting
+
+- Use plain Unicode symbols in manuscript Markdown: `✓`, `✗`, `⚠`, `↻`, `★`, `→`, `←`, `↔`, `↑`, `↓`, `Σ`, `τ`, `λ`, `∈`, `ℝ`, `₁…₅`.
+- Do not use emoji variants such as `✅`, `❌`, `⚠️`, `❗`, `🔄`, `↺`, `⭐`.
+- Do not use internal TeX macros like `\BookCheckMark` inside chapter files.
+- In tables, do not duplicate meaning with pictograms: prefer `Да`, `Нет`, `Зависит`, `Агент`, `Человек` instead of `✓ Да`, `✗ Нет`, `⚠ Зависит`, `✓ Агент`.
+- Use a normal space instead of thin space ` `.
+- Use `_n` instead of `ₙ`.
+
 ## Content Rules
 
 ### Formulas
@@ -62,3 +71,4 @@ Use these rules for any edit under `book/`. AGENTS.md is the canonical source of
 - Do not introduce claims that cannot be verified.
 - If a structural gap is real, it is acceptable to add a new section or chapter, but keep the chapter map coherent.
 - After any structural change, verify that AGENTS.md and readme.md remain accurate.
+- After editing manuscript files, run `python3 scripts/validate_book_format.py <changed_files>` and fix all reported errors before finishing.

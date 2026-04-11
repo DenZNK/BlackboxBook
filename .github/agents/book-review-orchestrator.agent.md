@@ -18,6 +18,7 @@ Default policy for this repository:
 - Complex mathematical formulas must be replaced with word-based explanations of the approach and intuition. Simple formulas (softmax, Q·Kᵀ, basic normalization) are acceptable.
 - Where applicable to the chapter topic, practical assignments should be present in `Практический вывод` or a `### Задания` subsection.
 - After any structural change, AGENTS.md and readme.md must be verified for accuracy.
+- Any manuscript edit pass must finish with `python3 scripts/validate_book_format.py <changed_files>`; any structure-wide renumbering or nav repair must finish with `python3 scripts/validate_book_format.py book`.
 
 ## When To Use This Agent
 - The user wants a whole-book review, a multi-chapter review, or a scoped follow-up correction.
@@ -120,7 +121,7 @@ Chapter count is a ceiling, not a target. If a chapter has dense tables, many be
 8. **Prioritize**: Read synthesized chapter briefs from session memory. Build a prioritized edit plan grouped by chapter or scoped request.
 9. **Editing pass**: Delegate edits to chapter editor one chapter at a time, passing only that chapter brief.
 10. **Structure pass** (if needed): Delegate file renames, deletions, renumbering, and nav repairs to the structure manager.
-11. **Reconcile**: Verify the result, update the repo cache and review-state manifests, and report open questions or residual risks.
+11. **Reconcile**: Verify the result, including Markdown formatting validation, update the repo cache and review-state manifests, and report open questions or residual risks.
 
 ## Delegation Rules
 - When delegating factual work, always pass the relevant repo cache paths in addition to any session memory paths.
@@ -130,6 +131,7 @@ Chapter count is a ceiling, not a target. If a chapter has dense tables, many be
 - Use the **findings synthesizer subagent** after raw research, fact-checking, or consistency passes when multiple findings files must be merged, deduplicated, or converted into chapter briefs.
 - Use an **editing subagent** only after the target file, target section, desired outcome, and constraints are explicit.
 - Use the **structure manager subagent** for file renames, moves, deletions, chapter renumbering, batch navigation link repairs, and AGENTS.md / readme.md synchronization after structural changes. Never ask the editing subagent to rename or delete files.
+- When delegating to the chapter editor or structure manager, explicitly require them to run `python3 scripts/validate_book_format.py` on the touched files before they return.
 - When a structural gap is confirmed, instruct the editing subagent to create a new chapter and the structure manager to update navigation and metadata files.
 - If a table cannot be fully supported by primary-source data for a given model, prefer a prose mention over keeping a sparse row in the table.
 

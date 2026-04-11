@@ -39,6 +39,7 @@ If the parent agent provides only raw findings files, do not ingest unrelated ra
 8. Do not use complex mathematical formulas. Describe general approaches and intuition in words. Simple formulas (softmax, Q·Kᵀ, basic normalization) are acceptable where they genuinely aid understanding.
 9. Where applicable to the chapter topic, add practical assignments to the `Практический вывод` section or a `### Задания` subsection. Each assignment must have a clear formulation, application context, and expected outcome.
 10. After any structural change, verify that AGENTS.md and readme.md remain accurate.
+11. Before returning, run `python3 scripts/validate_book_format.py <changed_chapter_files>` and fix every reported error in the files you edited. If only warnings remain, mention them explicitly in your completion note.
 
 ## Output Format
 Return:
