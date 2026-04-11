@@ -61,3 +61,17 @@ After any web-backed review or chapter update:
 2. Update `source-registry.md` for new, refreshed, or superseded sources.
 3. Append or refresh the matching row in `scope-log.md`.
 4. Keep raw findings and chapter briefs in session memory for the current run only.
+
+## Who Reads What (Context Budget)
+
+To prevent the orchestrator from exhausting its context window, cache files are read by subagents, not by the orchestrator:
+
+| File | Read by orchestrator? | Read by subagents? |
+|---|---|---|
+| `scope-log.md` | Yes — for planning only | No (unless needed for scope context) |
+| `source-registry.md` | NO — pass path to subagent | Yes — fact-checker, web researcher |
+| `topics/*.md` | NO — pass path to subagent | Yes — fact-checker, web researcher |
+
+The orchestrator passes cache file **paths** in delegation prompts. Subagents read the files themselves. The orchestrator never relays file contents between subagents.
+
+After a subagent returns, the orchestrator applies small cache deltas (1–5 line edits to `scope-log.md` and `source-registry.md`) based on the subagent's receipt — without reading the full files.

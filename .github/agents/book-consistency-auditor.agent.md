@@ -44,3 +44,17 @@ Return:
 1. Findings sorted by severity.
 2. For each finding: `Finding ID`, `Source scope`, location, issue, why it matters, recommended fix, `Resolution status: open`, and cross-scope references when relevant.
 3. If a new chapter or section is justified, provide a proposed title, placement, and 3-5 bullet outline.
+
+## Receipt Mode (Default)
+
+When the parent agent provides a target session memory path:
+
+1. Write your full findings list to that path.
+2. Return ONLY a receipt:
+   - **Files written**: [session memory paths created/updated]
+   - **Findings**: N total (X critical, Y major, Z minor)
+   - **Cache deltas**: "none" (consistency auditor does not do web research)
+   - **Status**: done / blocked (reason)
+   - **Next**: [recommended next step]
+
+Do NOT return the full findings list in chat unless the parent explicitly asks.

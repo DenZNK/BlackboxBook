@@ -39,3 +39,30 @@ Return:
 4. Conflicts that still require adjudication.
 5. Repo-cache deltas the orchestrator should write into `.github/review-cache/`, if applicable.
 6. Chapters ready for editing.
+
+## Receipt Mode (Default)
+
+When the parent agent provides a target session memory path:
+
+1. Write synthesized briefs and state updates to the specified paths.
+2. Return ONLY a receipt:
+   - **Files written**: [session memory paths created/updated]
+   - **Findings synthesized**: N total across M chapters
+   - **Duplicates merged**: N groups
+   - **Conflicts**: N requiring adjudication, or "none"
+   - **Cache deltas**: [topic IDs / source IDs for orchestrator to update] or "none"
+   - **Chapters ready for editing**: [list]
+   - **Status**: done / blocked (reason)
+
+Do NOT return the full synthesized content in chat unless the parent explicitly asks.
+
+## Finding Record Schema
+
+All findings processed by the synthesizer must have:
+- Stable `Finding ID`
+- `Source scope` (exact chapter block or topic)
+- `Resolution status` (`open`, `partially_resolved`, `resolved`)
+- `As of` (`YYYY-MM-DD` for time-sensitive claims, `n/a` otherwise)
+- When supported by cached research: `Topic ID` and `Source ID`s from `.github/review-cache/`
+- When from web research: source URLs in raw file, minimal evidence summary in briefs
+- When multiple raw findings refer to the same issue: one canonical entry with `Related findings` list

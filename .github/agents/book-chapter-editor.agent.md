@@ -48,3 +48,17 @@ Return:
 2. Short summary of what changed and why.
 3. Resolved and partially resolved `Finding ID`s.
 4. Any follow-up issues the parent agent should still review.
+
+## Receipt Mode (Default)
+
+When the parent agent provides a target session memory path:
+
+1. Write a detailed edit log to that path.
+2. Return ONLY a receipt:
+   - **Files written**: [session memory paths + edited chapter paths]
+   - **Findings resolved**: N resolved, M partially resolved
+   - **Validation**: pass / warnings (list) / errors (list)
+   - **Status**: done / blocked (reason)
+   - **Next**: [follow-up issues or "none"]
+
+Do NOT return the full edit log in chat unless the parent explicitly asks.

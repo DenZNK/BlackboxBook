@@ -52,3 +52,21 @@ Return a flat list of findings. For each finding include:
 - Suggested cache update: `none`, `refresh existing topic`, or the source/topic IDs the parent should add to `.github/review-cache/`
 - Resolution status: open
 - Confidence: high, medium, low
+
+## Receipt Mode (Default)
+
+When the parent agent provides a target session memory path:
+
+1. Write your full findings list to that path.
+2. Return ONLY a receipt:
+   - **Files written**: [session memory paths created/updated]
+   - **Findings**: N total (X critical, Y major, Z minor)
+   - **Cache deltas**: [topic IDs needing refresh] or "none"
+   - **Status**: done / blocked (reason)
+   - **Next**: [recommended next step]
+
+Do NOT return the full findings list in chat unless the parent explicitly asks.
+
+## Self-Sufficient Cache Reading
+
+When the parent agent provides cache paths (`.github/review-cache/topics/*.md`, `source-registry.md`), read them yourself at the start of your pass. Do NOT expect the parent to relay their contents to you.

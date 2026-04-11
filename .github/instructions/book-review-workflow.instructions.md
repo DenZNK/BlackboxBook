@@ -43,3 +43,20 @@ Use these rules when editing review agents, prompts, or persistent review-cache 
 - Keep the repo-cache schema simple and stable. Prefer additive updates to rewriting large files.
 - Preserve stable IDs (`Finding ID`, `Topic ID`, `Source ID`, `Scope ID`) so findings and cache records can be reconciled across runs.
 - When editing agents or prompts, put the cache-first behavior in the agent itself, not only in a single prompt, so direct user invocations stay consistent.
+
+## Context Overflow Prevention
+
+These rules prevent the orchestrator from exhausting its ~200k token context window during full-book reviews:
+
+- **Lazy cache loading**: the orchestrator reads ONLY `scope-log.md` for planning. It passes cache file paths to subagents without reading them.
+- **Receipt-only returns**: every subagent writes full output to session memory and returns a receipt of ≤15 lines to the orchestrator.
+- **2 session files rule**: the orchestrator creates only `review-plan.md` and `review-state.md`. All other session files are created by subagents.
+- **No chapter reading by orchestrator**: the orchestrator NEVER reads `book/*.md` files. All chapter reading is delegated.
+- **No content relay**: the orchestrator passes file paths between subagents, never file contents.
+- **Post-compaction recovery**: the orchestrator re-reads `review-state.md` and its todo list after any compaction event.
+
+## Prompt Design
+
+- The `full-book-review.prompt.md` file should be a thin trigger (~30 lines) that references the orchestrator's own rules, not a verbose duplicate of the protocol.
+- Agent definition files contain the full protocol. Prompts add task-specific constraints on top.
+- Do not duplicate protocol rules across prompt and agent definition.

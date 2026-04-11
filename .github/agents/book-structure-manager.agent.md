@@ -69,3 +69,17 @@ Return:
 3. AGENTS.md / readme.md changes made.
 4. Resolved or affected `Finding ID`s when the parent agent supplied them.
 5. Any discrepancies or issues that need manual attention.
+
+## Receipt Mode (Default)
+
+When the parent agent provides a target session memory path:
+
+1. Write a detailed operations log to that path.
+2. Return ONLY a receipt:
+   - **Files written**: [session memory path + affected file paths]
+   - **Operations**: N files renamed/moved/deleted, M nav links updated
+   - **Validation**: pass / warnings (list) / errors (list)
+   - **Status**: done / blocked (reason)
+   - **Next**: [follow-up issues or "none"]
+
+Do NOT return the full operations log in chat unless the parent explicitly asks.
