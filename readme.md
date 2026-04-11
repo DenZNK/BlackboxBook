@@ -56,6 +56,7 @@
 - `scripts/build_book_pdf.py` — скрипт локальной сборки PDF;
 - `build_pdf.command` — удобный запуск стандартной PDF-сборки на macOS;
 - `build_pdf_ebook.command` — удобный запуск ebook/Kindle-сборки на macOS;
+- `build_pdf_phone.command` — удобный запуск phone-сборки для узкого экрана на macOS;
 - `.github/agents/` — агенты GitHub Copilot для редактуры, фактчекинга, консистентности и оркестрации;
 - `.github/instructions/` и `.github/prompts/` — инструкции и prompt-шаблоны для работы с книгой.
 
@@ -77,6 +78,8 @@ python3 scripts/build_book_pdf.py --source book --output BlackboxBook.pdf
 `./build_pdf.command` собирает стандартный `BlackboxBook.pdf` в формате A4.
 
 `./build_pdf_ebook.command` собирает `BlackboxBook_ebook.pdf` в формате `6in x 8in` с уменьшенными полями для чтения на Kindle с 7" экраном, автоматически переносит длинные строки в fenced code blocks и немного уменьшает шрифт в коде.
+
+`./build_pdf_phone.command` собирает `BlackboxBook_phone.pdf` в формате `4.1in x 9.1in` с узкой текстовой колонкой и уменьшенными полями для чтения на экране смартфона без зума; длинные строки в fenced code blocks переносятся автоматически.
 
 ## О подходе книги
 
