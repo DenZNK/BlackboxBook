@@ -6,7 +6,7 @@
 
 **Evals — это юнит-тесты LLM-инженерии.** Не в метафорическом смысле: eval-набор фиксирует ожидаемое поведение, автоматически прогоняется при каждом изменении и блокирует деплой, если качество упало. Без evals вы ведёте машину с заклеенным спидометром — может быть, хорошо, а может быть, не очень.
 
-В предыдущих главах мы уже касались отдельных элементов оценки: агентные бенчмарки (Глава 10, §10.7), eval-метрики для RAG (Глава 12, §12.8), CoVe как верификация на лету (Глава 13), LDD как инфраструктура для сбора eval-данных из production (Глава 13, §13.3). Эта глава собирает разрозненные элементы в **единую eval-дисциплину** — от golden dataset до regression gate в CI/CD.
+В предыдущих главах мы уже касались отдельных элементов оценки: агентные бенчмарки ([Глава 10](10_агент_не_чат.md), §10.7), eval-метрики для RAG ([Глава 12](12_RAG.md), §12.8), CoVe как верификация на лету ([Глава 13](13_антигаллюцинационный_контур.md)), LDD как инфраструктура для сбора eval-данных из production ([Глава 13](13_антигаллюцинационный_контур.md), §13.3). Эта глава собирает разрозненные элементы в **единую eval-дисциплину** — от golden dataset до regression gate в CI/CD.
 
 ---
 
@@ -58,7 +58,7 @@ Golden dataset — это набор троек `(input, expected_output, contex
 Начните с **50–100 примеров** для каждого core use case. Это минимум, позволяющий получить осмысленную статистику (см. §14.9). Источники:
 
 1. **Ручная курация** — эксперт пишет примеры, покрывающие основные сценарии и edge-кейсы. Это самый дорогой, но самый точный способ.
-2. **Production-логи** — берёте реальные запросы из LDD-логов (Глава 13, §13.3), фильтруете по success/failure, добавляете эталонные ответы. Это feedback loop: production → golden dataset → eval → production.
+2. **Production-логи** — берёте реальные запросы из LDD-логов ([Глава 13](13_антигаллюцинационный_контур.md), §13.3), фильтруете по success/failure, добавляете эталонные ответы. Это feedback loop: production → golden dataset → eval → production.
 3. **Синтетическая генерация** — используете LLM для создания вариаций существующих примеров. DeepEval и RAGAS поддерживают генерацию синтетических тестовых данных из источников (документов, FAQ).
 
 ### Версионирование
@@ -87,7 +87,7 @@ evals/
 | Тип задачи | Ключевые метрики | Инструмент / источник |
 |------------|------------------|----------------------|
 | Open-ended QA | G-Eval, Faithfulness, Answer Relevancy | DeepEval, RAGAS |
-| RAG | Context Precision, Context Recall, Faithfulness | RAGAS (см. Главу 12) |
+| RAG | Context Precision, Context Recall, Faithfulness | RAGAS (см. [Главу 12](12_RAG.md)) |
 | Кодогенерация | pass@k | Chen et al. 2021 |
 | Классификация / Извлечение | Exact match, F1, Precision, Recall | Стандартные ML-метрики |
 | Суммаризация | Factuality, Conciseness (G-Eval с кастомными критериями) | Liu et al. 2023 |
@@ -160,7 +160,7 @@ Output format: JSON with "coherence", "consistency", "fluency", "relevance" keys
 
 > **Промпт для генерации:** «Напиши асинхронную Python-функцию `balanced_pairwise(judge, answer_a, answer_b)`, которая запускает pairwise comparison в обоих порядках (A/B и B/A). Если одна сторона побеждает в обоих случаях — возвращай победителя, иначе — tie (обнаружен position bias).»
 
-**Multiple Evidence.** Генерируйте несколько rationale перед выставлением оценки. Среднее по нескольким «мнениям» одной модели более стабильно, чем единичное (аналог self-consistency из Главы 8).
+**Multiple Evidence.** Генерируйте несколько rationale перед выставлением оценки. Среднее по нескольким «мнениям» одной модели более стабильно, чем единичное (аналог self-consistency из [Главы 8](08_несколько_гипотез.md)).
 
 **Human-in-the-Loop.** Вычисляйте entropy оценок судьи. Если для конкретного примера оценки нестабильны (высокая энтропия при multiple evidence) — маршрутизируйте к человеку. Судья обрабатывает 90% случаев, человек — оставшиеся 10% сложных.
 
@@ -259,9 +259,9 @@ Python-native eval-фреймворк с интеграцией в pytest — ev
 
 ### RAGAS
 
-Специализированный фреймворк для оценки RAG-пайплайнов. Реализует context precision, context recall, faithfulness, answer relevancy. Подробно разобран в Главе 12, §12.8. Для RAG-системы RAGAS — обязательный инструмент.
+Специализированный фреймворк для оценки RAG-пайплайнов. Реализует context precision, context recall, faithfulness, answer relevancy. Подробно разобран в [Главе 12](12_RAG.md), §12.8. Для RAG-системы RAGAS — обязательный инструмент.
 
-Репозиторий: https://github.com/explodinggradients/ragas
+Репозиторий: https://github.com/vibrantlabsai/ragas
 
 ### Braintrust (Autoevals)
 
@@ -444,7 +444,7 @@ Trace eval естественно интегрируется с OpenTelemetry sp
 - Chen, M., et al. (2021). "Evaluating Large Language Models Trained on Code." arXiv:2107.03374
 - Promptfoo. https://github.com/promptfoo/promptfoo
 - DeepEval. https://github.com/confident-ai/deepeval
-- RAGAS. https://github.com/explodinggradients/ragas
+- RAGAS. https://github.com/vibrantlabsai/ragas
 - Braintrust Autoevals. https://github.com/braintrustdata/autoevals
 
 ---
